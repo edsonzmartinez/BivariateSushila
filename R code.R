@@ -141,7 +141,7 @@ es1    <- jags(data = jags.data.sus, inits = jags.inits.sus,
                 n.chain = 1)
 fit.mcmc <- as.mcmc(est)
 
-par(mfrow=c(4,3))
+par(mfrow=c(4,3)) 
 par(mar = c(4,4.6,4,1))
 traceplot(fit.mcmc[,1][[1]],main=expression(alpha[1]),cex.main=1.5)
 abline(h=0.66,col="red",lwd=2)
