@@ -95,7 +95,8 @@ model.jags.sus<- 	function()
     ## Part 2
     B1[i] <- phi11 * (fl1[i] * sl2[i] * se3[i] + sl1[i] * sl2[i] * fe3[i]) + phi10 * (fl1[i] * se3[i] + fe3[i] * sl1[i])
     B2[i] <- phi11 * (fl1[i] * sl2[i] * se4[i]) + phi10 * (fl1[i] * se3[i] + fe3[i] * sl1[i])
-    B3[i] <- phi11 * (fl1[i] * sl3[i] * se1[i] + sl1[i] * (fl3[i] * se1[i] + fe1[i] * sl3[i])) + phi10 * (fl1[i] * se3[i] + fe3[i] * sl1[i]) + phi01 * (fl5[i] * se3[i] + fe3[i] * sl3[i])
+    B3[i] <- phi11 * (fl1[i] * sl3[i] * se1[i] + sl1[i] * (fl3[i] * se1[i] + fe1[i] * sl3[i])) + phi10 * (fl1[i] * se3[i] + fe3[i] * sl1[i]) + 
+             phi01 * (fl5[i] * se3[i] + fe3[i] * sl3[i])
     
     # Part 3
     C1[i] <- phi11 * (sl1[i] * fl2[i] * se3[i]) + phi01 * (fl2[i] * se4[i] + fe4[i] * sl2[i])
@@ -108,9 +109,11 @@ model.jags.sus<- 	function()
     
     ## Log-Likehoood 
     P1[i] <- v1[i]*(1 - v2[i]) * c1[i] * c2[i] * log(A1[i]) + v2[i]*(1 - v1[i]) * c1[i] * c2[i] * log(A2[i]) + (1 - v1[i])*(1 - v2[i]) * c1[i] * c2[i] * log(A3[i])
-    P2[i] <- v1[i]*(1 - v2[i]) * c1[i] * (1 - c2[i]) * log((B1[i])) + v2[i]*(1 - v1[i]) * c1[i] * (1 - c2[i]) * log((B2[i])) + (1 - v1[i])*(1 - v2[i]) * c1[i] * (1 - c2[i]) * log((B3[i]))
+    P2[i] <- v1[i]*(1 - v2[i]) * c1[i] * (1 - c2[i]) * log((B1[i])) + v2[i]*(1 - v1[i]) * c1[i] * (1 - c2[i]) * log((B2[i])) + 
+             (1 - v1[i])*(1 - v2[i]) * c1[i] * (1 - c2[i]) * log((B3[i]))
     P3[i] <- v1[i]*(1 - v2[i]) * (1 - c1[i]) * c2[i] * log((C1[i])) + v2[i]*(1 - v1[i]) * (1 - c1[i]) * c2[i] * log((C2[i]))
-    P4[i] <- v1[i]*(1 - v2[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D1[i])) + v2[i]*(1 - v1[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D2[i])) + (1 - v1[i])*(1 - v2[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D3[i]))
+    P4[i] <- v1[i]*(1 - v2[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D1[i])) + v2[i]*(1 - v1[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D2[i])) + 
+             (1 - v1[i])*(1 - v2[i]) * (1 - c1[i]) * (1 - c2[i]) * log((D3[i]))
     
     L[i]  <- exp(P1[i] + P2[i] + P3[i] + P4[i])
     
